@@ -8,18 +8,18 @@ export const siteConfig = {
 			label: "Home",
 			href: "/",
 		},
-    {
-      label: "About",
-      href: "#about",
-    },
-    {
-      label: "Register",
-      href: "#register",
-    },
-	{
-		label: "Gallery",
-		href: "#gallery",
-	  },
+		{
+			label: "About",
+			href: "#about",
+		},
+		{
+			label: "Register",
+			href: "#register",
+		},
+		{
+			label: "Gallery",
+			href: "#gallery",
+		},
 	],
 	navMenuItems: [
 		{
@@ -37,8 +37,8 @@ export const siteConfig = {
 		{
 			label: "Gallery",
 			href: "#gallery",
-		  },
-		
+		},
+
 	],
-	
+
 };

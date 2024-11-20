@@ -12,7 +12,6 @@ import Head from "next/head";
 import Sponser from "./docs/page";
 import Gallery from "./gallery/page";
 
-
 export default function Home() {
   const dissolvingEffectStyle = {
     filter:
@@ -32,6 +31,7 @@ export default function Home() {
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   };
+  
   return (
     <div>
       <Head>
@@ -45,7 +45,7 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-wrap justify-evenly gap-8 lg:py-10">
-        <section className="flex flex-col justify-start  gap-4 py-0 pb-0 md:py-16 max-w-3xl text-center ">
+        <section className="flex flex-col justify-start gap-4 py-0 pb-0 md:py-16 max-w-3xl text-center">
           <div className="mb-md px-0 lg:pt-16 md:pt-1 md:pb-1">
             <h1 className={title()}>All&nbsp;</h1>
             <h1 className={title()}>
@@ -57,17 +57,17 @@ export default function Home() {
             <h1 className={title()}>
               <span style={textGradientStyle}>Student&nbsp;Convention</span>
             </h1>
-            <h1 className={subtitle()}><b>"Aspire, Achieve, Accelerate."</b></h1>
+            <h1 className={subtitle()}>
+              <b>&quot;Aspire, Achieve, Accelerate.&quot;</b>
+            </h1>
             <h2 className={subtitle()}>December 13 - 15 2024</h2>
           </div>
         </section>
 
         {/* Right Section (Image) */}
-        <div className="max-w-lg pl-8 pr-8 lg:pr-0 lg:pl-0 ">
-          {/* Add your image here */}
+        <div className="max-w-lg pl-8 pr-8 lg:pr-0 lg:pl-0">
           <section>
             <div>
-              {/* <div className="absolute w-[40%] h-[35%]  bg-gradient-to-r from-gray-700"/> */}
               <Image
                 src="/sample.png"
                 className="relative"
@@ -79,6 +79,7 @@ export default function Home() {
           </section>
         </div>
       </div>
+      
       <div className="flex gap-3 pt-8 lg:pt-3 pr-2 mb-10 justify-center">
         <Link
           as={NextLink}
@@ -133,24 +134,12 @@ export default function Home() {
           <Sponser />
         </section>
       </div>
-      
 
       <div id="gallery">
         <section>
           <Gallery />
         </section>
-      </div>  
-
-
-
-      
-
-
-
-
-
-
-
+      </div>
     </div>
   );
 }

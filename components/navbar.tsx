@@ -1,111 +1,92 @@
 "use client";
-import { Button } from "@nextui-org/button";
-import { Link } from "@nextui-org/link";
-import {
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Navbar as NextUINavbar,
-} from "@nextui-org/navbar";
+
 import { useState } from "react";
-import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import Image from "next/image";
 import logo from "/public/logo1.png";
+import { siteConfig } from "@/config/site";
 
-
-
-const LinkStyles = (isActive: boolean) => ({
-	color: "foreground",
-	fontWeight: isActive ? "bold" : "normal",
-	paddingBottom: isActive ? "1px" : "0",
-	borderBottom: isActive ? "2px solid #921C25" : "none",
-  });
+const LinkStyles = (isActive: boolean) => {
+  return isActive
+    ? "font-bold border-b-2 border-[#921C25] pb-1"
+    : "font-normal pb-0";
+};
 
 export const Navbar = () => {
   const [activeLink, setActiveLink] = useState(0);
 
-
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" height={"5rem"}>
-      <NavbarBrand as="li" className="gap-3 pt-10 max-w-screen-xl">
-        <NextLink className="flex flex-col justify-start items-center gap-1" href="/">
-        <Image src={logo} alt="brand" width={100} height={50} />
-        </NextLink>
-      </NavbarBrand>
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="center">
-        <ul className="hidden lg:flex gap-10 justify-start ml-1">
-		{siteConfig.navItems.map((item, index) => (
-          <NavbarItem key={item.href}>
-             
+    <nav className="sticky top-0 z-50 backdrop-blur-md shadow-md">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between h-20 px-4">
+        {/* Brand Section */}
+        <div className="flex items-center gap-3">
+          <NextLink href="/">
+            <Image src={logo} alt="brand" width={100} height={50} />
+          </NextLink>
+        </div>
+
+        {/* Desktop Navigation Links */}
+        <ul className="hidden lg:flex items-center gap-10">
+          {siteConfig.navItems.map((item, index) => (
+            <li key={item.href}>
               <NextLink
-              style={LinkStyles(index === activeLink)}
-              color="foreground"
-              onClick={() => setActiveLink(index)} // Update the active link on click
-              href={item.href}
-            >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
-        <NavbarItem className="hidden sm:flex gap-2">
-          {/* <ThemeSwitch /> */}
-        </NavbarItem>
-
-        <NavbarItem className="hidden md:flex">
-          <Button
-            isExternal
-            as={Link}
-            className="text-sm font-normal  text-default-600 bg-default-100"
-            href={"https://www.yepdesk.com/buy-tickets/67371281c9e77c000138ebed"}
-            // startContent={"H"}
-            variant="flat"
-          >
-            <span className="success">Register</span>
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        {/* <Link isExternal href={siteConfig.links.github} aria-label="Github">
-          <GithubIcon className="text-default-500" />
-        </Link> */}
-        {/* <ThemeSwitch /> */}
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
+                href={item.href}
+                className={`text-gray-700 hover:text-gray-900 ${LinkStyles(
                   index === activeLink
-                    ? "success"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "foreground"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
+                )}`}
                 onClick={() => setActiveLink(index)}
               >
                 {item.label}
-              </Link>
-            </NavbarMenuItem>
+              </NextLink>
+            </li>
           ))}
+        </ul>
+
+        {/* Action Button */}
+        <div className="hidden md:flex items-center gap-4">
+          <NextLink
+            href="https://www.yepdesk.com/buy-tickets/67371281c9e77c000138ebed"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="px-4 py-2 text-sm font-medium text-white bg-default-100 rounded hover:bg-blue-700">
+              Register
+            </button>
+          </NextLink>
         </div>
-      </NavbarMenu>
-    </NextUINavbar>
+
+        {/* Mobile Menu Toggle */}
+        <div className="flex lg:hidden">
+          <button
+            className="text-gray-700 focus:outline-none"
+            onClick={() => setActiveLink(-1)} // Temporary placeholder for mobile menu toggle logic
+          >
+            {/* Add a hamburger menu icon here */}
+            ☰
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Menu */}
+      {activeLink === -1 && (
+        <div className="lg:hidden backdrop-blur-md shadow-md">
+          <ul className="flex flex-col gap-4 p-4">
+            {siteConfig.navItems.map((item, index) => (
+              <li key={item.href}>
+                <NextLink
+                  href={item.href}
+                  className={`text-gray-600 hover:text-gray-900 ${LinkStyles(
+                    index === activeLink
+                  )}`}
+                  onClick={() => setActiveLink(index)}
+                >
+                  {item.label}
+                </NextLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </nav>
   );
 };

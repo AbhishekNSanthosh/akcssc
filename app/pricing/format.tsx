@@ -1,4 +1,5 @@
 // PricingCards.js file
+import Image from "next/image";
 import React from "react";
 
 const PricingCards = () => {
@@ -30,10 +31,12 @@ const PricingCards = () => {
             key={index}
             className={`w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300`}
           >
-            <img
+            <Image
               className="w-20 mx-auto mt-[-3rem] bg-white"
               src={card.image}
               alt="/"
+              width={500}
+              height={500}
             />
             <h2 className="text-2xl font-bold text-center py-8">
               {card.title}
