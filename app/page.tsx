@@ -69,7 +69,7 @@ export default function Home() {
           <section>
             <div>
               <Image
-                src="/sample.png"
+                src="/main.jpeg"
                 className="relative"
                 width={500}
                 height={500}
