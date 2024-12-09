@@ -76,6 +76,7 @@ const PricingCards = () => {
               ))}
             </div>
             <button
+            disabled
               onClick={(e) => {
                 e.preventDefault();
                 window.open(
@@ -83,9 +84,9 @@ const PricingCards = () => {
                   "_blank"
                 );
               }}
-              className={`bg-[#921C25] hover:text-[#921C25] text-black hover:bg-gray-50 duration-150 w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3`}
+              className={`bg-[#921C25] cursor-not-allowed hover:text-[#921C25] text-black hover:bg-gray-50 duration-150 w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3`}
             >
-              Register Now
+              Tickets Sold Out
             </button>
           </div>
         ))}
